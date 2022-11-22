@@ -1,4 +1,6 @@
 using CleanArchitectureTemplate.WebAPI.Data;
+using CleanArchitectureTemplate.WebAPI.Entities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +15,11 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+builder.Services.AddIdentityCore<User>()
+    .AddRoles<IdentityRole>()
+    .AddEntityFrameworkStores<ApplicationDbContext>();
+builder.Services.AddAuthentication();
+builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
@@ -29,6 +36,6 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.SeedData();
+await app.SeedData();
 
 app.Run();

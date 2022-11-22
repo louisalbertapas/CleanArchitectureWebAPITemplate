@@ -1,8 +1,11 @@
-﻿namespace CleanArchitectureTemplate.WebAPI.Data
+﻿using CleanArchitectureTemplate.WebAPI.Entities;
+using Microsoft.AspNetCore.Identity;
+
+namespace CleanArchitectureTemplate.WebAPI.Data
 {
     public static class DbInitializerExtension
     {
-        public static IApplicationBuilder SeedData(this IApplicationBuilder app)
+        public static async Task<IApplicationBuilder> SeedData(this IApplicationBuilder app)
         {
             ArgumentNullException.ThrowIfNull(app, nameof(app));
 
@@ -11,7 +14,8 @@
             try
             {
                 var applicationDbContext = services.GetRequiredService<ApplicationDbContext>();
-                DbInitializer.Initialize(applicationDbContext);
+                var userManager = services.GetRequiredService<UserManager<User>>();
+                await DbInitializer.Initialize(applicationDbContext, userManager);
             }
             catch
             {
