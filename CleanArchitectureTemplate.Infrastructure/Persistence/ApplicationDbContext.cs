@@ -1,4 +1,5 @@
-﻿using CleanArchitectureTemplate.Domain.Entities;
+﻿using CleanArchitectureTemplate.Application.Common.Interfaces;
+using CleanArchitectureTemplate.Domain.Entities;
 using CleanArchitectureTemplate.Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -7,7 +8,7 @@ using System.Reflection;
 
 namespace CleanArchitectureTemplate.Infrastructure.Persistence.Data
 {
-    public class ApplicationDbContext : IdentityDbContext<User>
+    public class ApplicationDbContext : IdentityDbContext<User>, IApplicationDbContext
     {
         public ApplicationDbContext(DbContextOptions options) : base(options)
         {

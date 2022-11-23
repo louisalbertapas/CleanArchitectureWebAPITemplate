@@ -1,4 +1,5 @@
-﻿using CleanArchitectureTemplate.Infrastructure.Identity;
+﻿using CleanArchitectureTemplate.Application.Common.Interfaces;
+using CleanArchitectureTemplate.Infrastructure.Identity;
 using CleanArchitectureTemplate.Infrastructure.Persistence.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -21,6 +22,8 @@ namespace CleanArchitectureTemplate.Infrastructure
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddAuthentication();
             services.AddAuthorization();
+
+            services.AddScoped<IApplicationDbContext>(provider => provider.GetRequiredService<ApplicationDbContext>());
 
             return services;
         }
