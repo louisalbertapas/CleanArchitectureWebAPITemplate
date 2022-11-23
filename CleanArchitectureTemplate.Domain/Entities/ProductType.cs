@@ -1,4 +1,4 @@
-﻿namespace CleanArchitectureTemplate.WebAPI.Entities
+﻿namespace CleanArchitectureTemplate.Domain.Entities
 {
     public enum ProductType
     {

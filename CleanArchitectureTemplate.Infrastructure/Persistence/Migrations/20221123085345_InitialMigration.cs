@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace CleanArchitectureTemplate.WebAPI.Data.Migrations
+namespace CleanArchitectureTemplate.Infrastructure.Persistence.Migrations
 {
-    public partial class InsertIdentityTables : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -46,6 +46,20 @@ namespace CleanArchitectureTemplate.WebAPI.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Products",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    ProductType = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Products", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -157,12 +171,12 @@ namespace CleanArchitectureTemplate.WebAPI.Data.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "11017904-5184-4f1d-ba4b-73e4a7e3a62d", "e71d7dd8-ff0d-4489-8743-13723ab816d0", "User", "USER" });
+                values: new object[] { "8da5bee9-4846-4d56-b876-983d3a9bc9f7", "e6a0f623-a446-4b28-a503-066ea570f518", "SuperAdmin", "SUPERADMIN" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "11ac73e8-1082-4ae1-9ec3-1aeb7df6d795", "16ca392c-ba9a-4b45-b9f2-011be0eae4cf", "SuperAdmin", "SUPERADMIN" });
+                values: new object[] { "d4912d2f-a47d-41ca-beb9-6c3b3bc7a57f", "6f63e781-8d8f-4125-8488-602b2e81345f", "User", "USER" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -220,6 +234,9 @@ namespace CleanArchitectureTemplate.WebAPI.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "Products");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

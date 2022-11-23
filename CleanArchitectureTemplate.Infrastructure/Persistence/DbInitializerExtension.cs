@@ -1,7 +1,9 @@
-﻿using CleanArchitectureTemplate.WebAPI.Entities;
+﻿using CleanArchitectureTemplate.Infrastructure.Identity;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace CleanArchitectureTemplate.WebAPI.Data
+namespace CleanArchitectureTemplate.Infrastructure.Persistence.Data
 {
     public static class DbInitializerExtension
     {

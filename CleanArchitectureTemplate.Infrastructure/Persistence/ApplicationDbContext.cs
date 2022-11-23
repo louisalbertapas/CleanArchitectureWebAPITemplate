@@ -1,9 +1,11 @@
-﻿using CleanArchitectureTemplate.WebAPI.Entities;
+﻿using CleanArchitectureTemplate.Domain.Entities;
+using CleanArchitectureTemplate.Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
-namespace CleanArchitectureTemplate.WebAPI.Data
+namespace CleanArchitectureTemplate.Infrastructure.Persistence.Data
 {
     public class ApplicationDbContext : IdentityDbContext<User>
     {
@@ -16,6 +18,7 @@ namespace CleanArchitectureTemplate.WebAPI.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
             base.OnModelCreating(builder);
 
             // Seed identity roles

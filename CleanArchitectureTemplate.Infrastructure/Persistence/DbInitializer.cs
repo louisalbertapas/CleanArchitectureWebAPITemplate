@@ -1,7 +1,8 @@
-﻿using CleanArchitectureTemplate.WebAPI.Entities;
+﻿using CleanArchitectureTemplate.Domain.Entities;
+using CleanArchitectureTemplate.Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity;
 
-namespace CleanArchitectureTemplate.WebAPI.Data
+namespace CleanArchitectureTemplate.Infrastructure.Persistence.Data
 {
     public static class DbInitializer
     {
